@@ -1,0 +1,14 @@
+{
+  "site": {
+    "name": "Fieldnotes",
+    "title": "Fieldnotes",
+    "description": "",
+    "slug": "fieldnotes",
+    "homepage": "journal"
+  },
+  "tokens": {
+    "instagram_url": "https://instagram.com/",
+    "pinterest_url": "https://pinterest.com/",
+    "behance_url": "https://behance.net/"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "name": "Fieldnotes",
+  "slug": "fieldnotes",
+  "version": "1.0.0",
+  "render_version": "v1",
+  "author": "Masthead",
+  "description": "An editorial journal for indie blogs: a photo-led grid of stories, tall condensed headlines and an unhurried reading page.",
+  "tokens": [
+    { "key": "paper", "label": "Paper", "type": "color", "default": "#f8f5ee", "category": "Appearance" },
+    { "key": "ink", "label": "Ink", "type": "color", "default": "#1c1a17", "category": "Appearance" },
+    { "key": "accent", "label": "Accent", "type": "color", "default": "#9a5b3c", "category": "Appearance", "description": "Links and the active nav underline." },
+    { "key": "favicon", "label": "Favicon", "type": "file", "default": "", "category": "Appearance" },
+    {
+      "key": "heading_font",
+      "label": "Headline font",
+      "type": "select",
+      "options": ["Oranienbaum", "Bodoni Moda", "Playfair Display", "Cormorant Garamond"],
+      "default": "Oranienbaum",
+      "category": "Typography",
+      "description": "Titles are set in capitals; a condensed face (Oranienbaum) gives the tall magazine look."
+    },
+    {
+      "key": "body_font",
+      "label": "Reading font",
+      "type": "select",
+      "options": ["Newsreader", "Hanken Grotesk"],
+      "default": "Newsreader",
+      "category": "Typography",
+      "description": "The face for post and page text."
+    },
+    {
+      "key": "columns",
+      "label": "Grid columns",
+      "type": "select",
+      "options": ["2", "3"],
+      "default": "3",
+      "category": "Journal",
+      "description": "Columns on desktop. Drops to 2 on tablet and 1 on phone."
+    },
+    {
+      "key": "card_shape",
+      "label": "Card image shape",
+      "type": "select",
+      "options": ["natural", "portrait", "square"],
+      "default": "natural",
+      "category": "Journal",
+      "description": "'natural' keeps each photo's own proportions for a staggered grid."
+    },
+    { "key": "show_search", "label": "Show post search", "type": "boolean", "default": false, "category": "Journal" },
+    { "key": "show_tags", "label": "Show tag filter on the homepage", "type": "boolean", "default": false, "category": "Journal" },
+    { "key": "drop_cap", "label": "Drop cap on posts", "type": "boolean", "default": true, "category": "Posts" },
+    { "key": "show_more", "label": "Show \"more stories\" under posts", "type": "boolean", "default": true, "category": "Posts" },
+    { "key": "instagram_url", "label": "Instagram", "type": "url", "default": "", "category": "Social" },
+    { "key": "pinterest_url", "label": "Pinterest", "type": "url", "default": "", "category": "Social" },
+    { "key": "behance_url", "label": "Behance", "type": "url", "default": "", "category": "Social" },
+    { "key": "email", "label": "Email address", "type": "string", "default": "", "category": "Social" }
+  ],
+  "page_options": [
+    {
+      "key": "layout",
+      "label": "Page layout",
+      "type": "select",
+      "options": ["contained", "wide"],
+      "default": "contained",
+      "description": "'wide' lets the page body use the full grid width."
+    },
+    {
+      "key": "show_navigation",
+      "label": "Show site navigation",
+      "type": "boolean",
+      "default": true,
+      "description": "Untick to hide the top nav bar on this page only."
+    }
+  ],
+  "post_options": [
+    {
+      "key": "featured_image",
+      "label": "Featured image",
+      "type": "file",
+      "default": "",
+      "description": "The photo on the post's card in the journal grid and at the top of the post."
+    },
+    {
+      "key": "featured_alt",
+      "label": "Featured image alt text",
+      "type": "string",
+      "default": "",
+      "description": "Describes the photo for screen readers."
+    },
+    {
+      "key": "featured_caption",
+      "label": "Caption",
+      "type": "string",
+      "default": "",
+      "description": "Shown under the photo on the post — a credit, or 'Shot on 35mm, Portra 400'."
+    },
+    {
+      "key": "featured_layout",
+      "label": "Featured image on the post",
+      "type": "select",
+      "options": ["wide", "full", "column", "hidden"],
+      "default": "wide",
+      "description": "wide: wider than the text. full: edge to edge. column: text width. hidden: only on the card."
+    },
+    {
+      "key": "seo_description",
+      "label": "Search description",
+      "type": "text",
+      "default": "",
+      "description": "Overrides the excerpt in the page's meta description and social previews."
+    }
+  ]
+}

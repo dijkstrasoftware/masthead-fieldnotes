@@ -1,0 +1,33 @@
+{
+  "label": "Journal",
+  "description": "The photo grid of your posts, with a tag filter. Set it as the homepage to make it your front page.",
+  "page_options": [
+    {
+      "key": "show_title",
+      "label": "Show page title",
+      "type": "boolean",
+      "default": false,
+      "description": "Print the page title above the grid. Off keeps the photos first, like the homepage."
+    },
+    {
+      "key": "intro",
+      "label": "Intro",
+      "type": "text",
+      "default": "",
+      "description": "A short line under the title. Empty = skipped."
+    },
+    {
+      "key": "show_tags",
+      "label": "Show tag filter",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "key": "show_navigation",
+      "label": "Show site navigation",
+      "type": "boolean",
+      "default": true,
+      "description": "Untick to hide the top nav bar on this page only."
+    }
+  ]
+}

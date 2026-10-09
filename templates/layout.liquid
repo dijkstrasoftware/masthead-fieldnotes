@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if post %}{{ post.title | escape }} &mdash; {% elsif page and page.slug != site.homepage_slug %}{{ page.title | escape }} &mdash; {% endif %}{{ site.title | default: site.name | escape }}</title>
+
+    {% assign description = site.description %}
+    {% if post %}
+      {% if post.post_options.seo_description != "" %}{% assign description = post.post_options.seo_description %}{% elsif post.excerpt and post.excerpt != "" %}{% assign description = post.excerpt %}{% endif %}
+    {% endif %}
+    {% if description and description != "" %}
+      <meta name="description" content="{{ description | escape }}" />
+      <meta property="og:description" content="{{ description | escape }}" />
+    {% endif %}
+    {% if post %}
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="{{ post.title | escape }}" />
+      {% if post.post_options.featured_image != "" %}
+        <meta property="og:image" content="{{ post.post_options.featured_image }}" />
+        <meta name="twitter:card" content="summary_large_image" />
+      {% endif %}
+    {% endif %}
+    {% if theme.tokens.favicon != "" %}<link rel="icon" href="{{ theme.tokens.favicon }}" />{% endif %}
+
+    {% assign heading_font = theme.tokens.heading_font | default: "Oranienbaum" %}
+    {% assign body_font = theme.tokens.body_font | default: "Newsreader" %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family={{ heading_font | replace: ' ', '+' }}&family=Hanken+Grotesk:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;1,400{% unless body_font == 'Hanken Grotesk' %}&family={{ body_font | replace: ' ', '+' }}:ital,wght@0,400;0,600;1,400{% endunless %}&display=swap"
+    />
+
+    <style>
+      {{ theme.css }}
+      {{ site.css_overrides }}
+    </style>
+  </head>
+  <body class="cards-{{ theme.tokens.card_shape | default: 'natural' }}">
+    {% unless page.page_options.show_navigation == false %}
+      <nav class="site-nav" aria-label="Main">
+        <a class="brand" href="/">{{ site.name | escape }}</a>
+        {% if pages != empty %}
+          <ul class="nav-links">
+            {% for p in pages %}
+              <li><a href="{{ p.url }}"{% if page and p.url == page.url %} aria-current="page"{% endif %}>{{ p.title | escape }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        <div class="social">
+          {% if theme.tokens.instagram_url != "" %}
+            <a href="{{ theme.tokens.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
+            </a>
+          {% endif %}
+          {% if theme.tokens.behance_url != "" %}
+            <a href="{{ theme.tokens.behance_url }}" target="_blank" rel="noopener" aria-label="Behance">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h5.2c2.1 0 3.4 1 3.4 2.7 0 1.1-.6 1.9-1.6 2.3 1.3.3 2.1 1.3 2.1 2.7 0 2-1.5 3.3-3.9 3.3H3V6Zm2.3 4.3h2.6c1 0 1.5-.5 1.5-1.2 0-.8-.5-1.2-1.5-1.2H5.3v2.4Zm0 4.8h2.9c1.1 0 1.7-.5 1.7-1.4 0-.9-.6-1.4-1.7-1.4H5.3v2.8ZM15 7h5v1.3h-5V7Zm2.6 2.3c2.3 0 3.6 1.6 3.6 4.1v.5h-5.4c.1 1.2.8 1.9 1.9 1.9.8 0 1.4-.4 1.6-1h1.8c-.4 1.6-1.7 2.6-3.4 2.6-2.3 0-3.8-1.6-3.8-4s1.5-4.1 3.7-4.1Zm1.6 3.3c-.1-1-.7-1.7-1.6-1.7s-1.6.6-1.7 1.7h3.3Z" /></svg>
+            </a>
+          {% endif %}
+          {% if theme.tokens.pinterest_url != "" %}
+            <a href="{{ theme.tokens.pinterest_url }}" target="_blank" rel="noopener" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.6 2.2-.9 3.4-.2 1 .5 1.9 1.6 1.9 1.9 0 3.3-2 3.3-4.9 0-2.6-1.9-4.4-4.5-4.4-3.1 0-4.9 2.3-4.9 4.7 0 .9.4 1.9.8 2.5.1.1.1.2.1.3l-.3 1.2c0 .2-.2.3-.4.2-1.4-.6-2.2-2.6-2.2-4.2 0-3.4 2.5-6.6 7.2-6.6 3.8 0 6.7 2.7 6.7 6.3 0 3.8-2.4 6.8-5.7 6.8-1.1 0-2.2-.6-2.5-1.3l-.7 2.6c-.2.9-.9 2.1-1.4 2.9A10 10 0 1 0 12 2Z" /></svg>
+            </a>
+          {% endif %}
+          {% if theme.tokens.email != "" %}
+            <a href="mailto:{{ theme.tokens.email | escape }}" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5" /><path d="m3.5 6 8.5 7 8.5-7" /></svg>
+            </a>
+          {% endif %}
+        </div>
+      </nav>
+    {% endunless %}
+    <main{% if page.page_options.layout == "wide" %} class="wide"{% endif %}>
+      {{ content }}
+    </main>
+    <footer class="site-footer">
+      <a href="/">{{ site.name | escape }}</a>
+      <span>Published with <a href="https://masthead.site" target="_blank" rel="noopener">Masthead</a></span>
+    </footer>
+  </body>
+</html>
